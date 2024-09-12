@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+
     private void Awake()
     {
         Destroy(gameObject, 3.0f);
