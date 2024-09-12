@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ae0d6d7415f41c47a029f72e670e09f
+guid: afa91a220fa3b964e91269b556d1f92b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: pistol
+  - name: doubleshot
     originalName: 
-    pivot: {x: 0.5, y: -2.0833335}
+    pivot: {x: 0.5, y: -0.22222222}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 12
-    spriteID: 260b54dc1eeb38c43879b8f7c0914ba3
+      width: 32
+      height: 45
+    spriteID: 967ade86efdd46648805ac4d3561be4b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 2129075433
-    name: pistol
+    guid: 2141655525
+    name: doubleshot
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: pistol
+    - name: doubleshot
       frameIndex: 0
       cellRect:
-        x: 24
-        y: 25
-        width: 16
-        height: 12
-      spriteId: 260b54dc1eeb38c43879b8f7c0914ba3
+        x: 16
+        y: 10
+        width: 32
+        height: 45
+      spriteId: 967ade86efdd46648805ac4d3561be4b
     linkedCells: []
     parentIndex: -1
   platformSettings: []
