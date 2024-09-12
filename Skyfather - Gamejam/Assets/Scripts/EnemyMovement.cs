@@ -32,7 +32,6 @@ public class EnemyMovement : MonoBehaviour
         {
             agent.SetDestination(target);
         }
-        Debug.Log(agent.remainingDistance);
     }
 
     Vector3 GetClosestReachablePoint(NavMeshAgent agent)
