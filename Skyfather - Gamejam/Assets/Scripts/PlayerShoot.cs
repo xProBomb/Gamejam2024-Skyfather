@@ -26,7 +26,7 @@ public class PlayerShoot : MonoBehaviour
         {
             if(weaponSelection.curSlot == 1)
             {
-                weaponSelection.weapon1.transform.GetChild(0).GetComponent<GunAttack>().Fire(_bulletPrefab, _firePoint, this.transform, _bulletSpeed, 2);
+                weaponSelection.weapon1.transform.GetChild(0).GetComponent<GunAttack>().Fire(_bulletPrefab, _firePoint, this.transform, _bulletSpeed, numShots);
             } if(weaponSelection.curSlot == 2)
             {
 
