@@ -49,6 +49,7 @@ public class playerMovement : MonoBehaviour
 
     void FaceBody()
     {
+        playerBody.transform.position = transform.position;
         Vector3 initalRotation = transform.up;
         float angle = Mathf.Atan2(initalRotation.y, initalRotation.x) * Mathf.Rad2Deg;
         angle = SnapAngleToDirection(angle);
