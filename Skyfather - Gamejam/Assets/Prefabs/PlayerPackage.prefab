@@ -573,6 +573,7 @@ MonoBehaviour:
   _firePoint: {fileID: 2342616275083438018}
   _bulletPrefab: {fileID: 4539879705745828442, guid: e978afc47ff0f5044a7c50406e3c9716, type: 3}
   _bulletSpeed: 11
+  numShots: 1
 --- !u!50 &2624400217227349986
 Rigidbody2D:
   serializedVersion: 4
@@ -1031,6 +1032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 884362564963526069}
   - component: {fileID: 521068301871359433}
+  - component: {fileID: 1901338048064113650}
   m_Layer: 0
   m_Name: doubleshot
   m_TagString: Untagged
@@ -1105,6 +1107,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1901338048064113650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566008092664724225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5211e643440aa42a4f7efc374fec36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShoot: {fileID: 1999105565783315106}
 --- !u!1 &6336778566175409842
 GameObject:
   m_ObjectHideFlags: 0

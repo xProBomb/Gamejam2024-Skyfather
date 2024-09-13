@@ -12,7 +12,7 @@ public class CardMod : MonoBehaviour
     void Start()
     {
         int i = 0;
-        while(cardMod.transform.GetChild(i).childCount != 0 || i>10)
+        while(cardMod.transform.GetChild(i).childCount != 0 || i>=10)
         {
             cards.Add(cardMod.transform.GetChild(i).gameObject);
             i++;
