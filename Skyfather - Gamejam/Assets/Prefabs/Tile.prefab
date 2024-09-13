@@ -104,7 +104,7 @@ MonoBehaviour:
   _offsetColor: {r: 0.4401963, g: 0.6509434, b: 0.18729973, a: 1}
   _spriteRenderer: {fileID: 1753673139430045842}
   _tileHighlight: {fileID: 7782882709098569527}
-  _wall: {fileID: 6853276989872805881, guid: 890d9f2738039c042a1a074692a353cf, type: 3}
+  _wall: {fileID: 6853276989872805881, guid: d390ca5c816a6fa46ba7a8321c90394d, type: 3}
 --- !u!61 &5870254638340093769
 BoxCollider2D:
   m_ObjectHideFlags: 0
