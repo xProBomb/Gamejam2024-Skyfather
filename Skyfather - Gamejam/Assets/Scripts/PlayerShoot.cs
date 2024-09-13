@@ -14,6 +14,7 @@ public class PlayerShoot : MonoBehaviour
 
     [SerializeField]
     private float _bulletSpeed = 1.0f;
+    public float numShots = 1;
 
     void Awake()
     {
@@ -25,7 +26,7 @@ public class PlayerShoot : MonoBehaviour
         {
             if(weaponSelection.curSlot == 1)
             {
-                weaponSelection.weapon1.transform.GetChild(0).GetComponent<GunAttack>().Fire(_bulletPrefab, _firePoint, this.transform, _bulletSpeed);
+                weaponSelection.weapon1.transform.GetChild(0).GetComponent<GunAttack>().Fire(_bulletPrefab, _firePoint, this.transform, _bulletSpeed, 2);
             } if(weaponSelection.curSlot == 2)
             {
 
