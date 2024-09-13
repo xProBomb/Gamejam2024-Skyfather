@@ -60,42 +60,34 @@ public class playerMovement : MonoBehaviour
     {
         if (angle >= -22.5f && angle < 22.5f)
         {
-            Debug.Log("0");
             return 0; // RIGHT
         }
         else if (angle >= 22.5f && angle < 67.5f)
         {
-            Debug.Log("45");
             return 45; // UP-RIGHT
         }
         else if (angle >= 67.5f && angle < 112.5f)
         {
-            Debug.Log("90");
             return 90; // UP
         }
         else if (angle >= 112.5f && angle < 157.5f)
         {
-            Debug.Log("135");
             return 135; // UP-LEFT
         }
         else if (angle >= 157.5f || angle < -157.5f)
         {
-            Debug.Log("180");
             return 180; // LEFT
         }
         else if (angle >= -157.5f && angle < -112.5f)
         {
-            Debug.Log("-135");
             return 180; // DOWN-LEFT
         }
         else if (angle >= -112.5f && angle < -67.5f)
         {
-            Debug.Log("-90");
             return -90; // DOWN
         }
         else if (angle >= -67.5f && angle < -22.5f)
         {
-            Debug.Log("-45");
             return 0; // DOWN-RIGHT
         }
         return 0;
