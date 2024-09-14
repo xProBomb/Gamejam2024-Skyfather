@@ -33,6 +33,7 @@ public class CardMod : MonoBehaviour
                 cards[index].transform.GetChild(0).position += new Vector3(0,-1,5);
                 if (curCard >= cards.Count-1)
                 {
+                    Debug.Log("got this far");
                     curCard = 0;
                 } else
                 {
@@ -57,5 +58,14 @@ public class CardMod : MonoBehaviour
                 cards[index].transform.GetChild(0).position += new Vector3(0,1,-5);
             }
         }
+    }
+
+    public void AddCard(GameObject newCard)
+    {
+        GameObject spawnedCard = Instantiate(newCard);
+        cards.Add(cardMod.transform.GetChild(cards.Count).gameObject);
+        spawnedCard.transform.SetParent(cardMod.transform.GetChild(cards.Count - 1), false);
+        spawnedCard.transform.localScale = new Vector3(6f, 6f, 0f);
+        spawnedCard.transform.localPosition = new Vector3(0f, 0f, 0f);
     }
 }

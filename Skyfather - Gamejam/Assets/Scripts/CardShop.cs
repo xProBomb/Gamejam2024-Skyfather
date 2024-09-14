@@ -7,22 +7,25 @@ public class CardShop : MonoBehaviour
     public GameObject shop;
     public GameObject[] allCards;
     public GameObject[] cards;
+    public GameObject[] choosenCards;
     void Start()
     {
         if(allCards.Length > 0)
         {
-            int randomIndex = Random.Range(0, allCards.Length);
+            for(int i = 0; i < 3; i++) {
+                int randomIndex = Random.Range(0, allCards.Length);
 
-            GameObject shopCard = allCards[randomIndex];
+                GameObject shopCard = allCards[randomIndex];
+                choosenCards[i] = shopCard;
 
-            GameObject spawnedCard = Instantiate(shopCard);
+                GameObject spawnedCard = Instantiate(shopCard);
 
-            spawnedCard.transform.SetParent(cards[0].transform, false);
+                spawnedCard.transform.SetParent(cards[i].transform, false);
 
-            spawnedCard.transform.localPosition = Vector3.zero;
-            spawnedCard.transform.localRotation = Quaternion.identity;
-
-            Debug.Log("Placed card: " + spawnedCard.name + " in slot: " + cards[0].name);
+                spawnedCard.transform.localScale = new Vector3(10f, 10f, 0f);
+                spawnedCard.transform.localPosition = new Vector3(0f, -3, 0f);
+                spawnedCard.transform.localRotation = Quaternion.identity;
+            }
         }
     }
 
@@ -31,6 +34,28 @@ public class CardShop : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.X))
         {
             shop.SetActive(!shop.activeSelf);
+        }
+    }
+
+    public void NewShopCard()
+    {
+        for(int i = 0; i < 3; i++) {
+            if(cards[i].transform.childCount < 2)
+            {
+                Debug.Log("this never works");
+                int randomIndex = Random.Range(0, allCards.Length);
+                GameObject shopCard = allCards[randomIndex];
+
+                choosenCards[i] = shopCard;
+                GameObject spawnedCard = Instantiate(shopCard);
+
+                spawnedCard.transform.SetParent(cards[i].transform, false);
+
+                spawnedCard.transform.localScale = new Vector3(10f, 10f, 0f);
+                spawnedCard.transform.localPosition = new Vector3(0f, -3, 0f);
+                spawnedCard.transform.localRotation = Quaternion.identity;
+                i = 3;
+            }
         }
     }
 }
