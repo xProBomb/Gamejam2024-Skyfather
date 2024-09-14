@@ -14,6 +14,10 @@ public class EnemyMovement : MonoBehaviour
 
 
     [SerializeField]
+    private bool _hasTarget;
+
+
+    [SerializeField]
     private float _rangeToTargetPlayer = 10f;
 
     [SerializeField]
@@ -43,12 +47,15 @@ public class EnemyMovement : MonoBehaviour
                 if (distanceToPlayer <= _rangeToTargetPlayer)
                 {
                     target = player.transform.position;
-                    agent.SetDestination(target);
+                    if (agent.pathStatus == NavMeshPathStatus.PathComplete)
+                    {
+                        agent.SetDestination(target);
+                    }
                 }
             }
         }
         // check if turret is in range
-        else if (_willTargetTurrets)
+        if (_willTargetTurrets)
         {
             GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
             GameObject closestTurret = null;
@@ -67,17 +74,23 @@ public class EnemyMovement : MonoBehaviour
             if (closestTurret != null)
             {
                 target = closestTurret.transform.position;
-                agent.SetDestination(target);
+                if (agent.pathStatus == NavMeshPathStatus.PathComplete)
+                {
+                    agent.SetDestination(target);
+                }
             }
         }
         // if it hasnt set a target then set target to the gameobject with the tag "Base"
-        if (target == Vector3.zero)
+        else if (target == Vector3.zero)
         {
             GameObject baseObject = GameObject.FindGameObjectWithTag("Base");
             if (baseObject != null)
             {
                 target = baseObject.transform.position;
-                agent.SetDestination(target);
+                if (agent.pathStatus == NavMeshPathStatus.PathComplete)
+                {
+                    agent.SetDestination(target);
+                }
             }
         }
         // if the agents target is obstructed, find a new path
