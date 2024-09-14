@@ -57,6 +57,11 @@ public class CardMod : MonoBehaviour
                 index = Mathf.FloorToInt(curCard);
                 cards[index].transform.GetChild(0).position += new Vector3(0,1,-5);
             }
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                cards[Mathf.FloorToInt(curCard)].transform.GetChild(0).GetComponent<CardsModifiers>().Drop();
+                RemoveCard(Mathf.FloorToInt(curCard));
+            }
         }
     }
 
@@ -77,5 +82,22 @@ public class CardMod : MonoBehaviour
             spawnedCard.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
         
+    }
+
+    public void RemoveCard(int indexToRemove)
+    {
+        // Remove the card from the list
+        GameObject cardToRemove = cards[indexToRemove].transform.GetChild(0).gameObject;
+        Destroy(cardToRemove);
+
+        // Shift the remaining cards down
+        for (int i = indexToRemove + 1; i < cards.Count; i++)
+        {
+            GameObject card = cards[i].transform.GetChild(0).gameObject;
+            card.transform.SetParent(cardMod.transform.GetChild(i - 1), false); // Move card to the previous slot
+        }
+
+        // Remove the last card slot as it is now empty
+        cards.RemoveAt(cards.Count - 1);
     }
 }

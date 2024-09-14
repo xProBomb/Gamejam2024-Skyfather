@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class DoubleShot : CardsModifiers
 {
-    // public GameObject bulletPrefab;
-    // public float speed;
-    // public float numShots;
     public PlayerShoot playerShoot;
     public GameObject player;
 
