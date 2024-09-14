@@ -8,6 +8,14 @@ public class DoubleShot : CardsModifiers
     // public float speed;
     // public float numShots;
     public PlayerShoot playerShoot;
+    public GameObject player;
+
+    void Awake()
+    {
+        player = GameObject.Find("Player");
+        playerShoot = player.transform.GetComponent<PlayerShoot>();
+    }
+
     public override void PickUp()
     {
         Debug.Log(playerShoot.numShots);
