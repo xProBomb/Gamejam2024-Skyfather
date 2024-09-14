@@ -243,8 +243,8 @@ MonoBehaviour:
   _width: 160
   _height: 90
   _tilePrefab: {fileID: 6844459746688408004, guid: a156764a156a25046b41927d684537ff, type: 3}
-  _noPlaceTilePrefab: {fileID: 0}
-  _centerTilePrefab: {fileID: 0}
+  _noPlaceTilePrefab: {fileID: 6844459746688408004, guid: a1fcb7276ecc27740be9d2bbba8a4038, type: 3}
+  _centerTilePrefab: {fileID: 6844459746688408004, guid: 2cd4947a7e7f8f543a0e699a24466efd, type: 3}
   _cam: {fileID: 1942542883772777910}
   _navMeshSurface: {fileID: 815516832}
 --- !u!4 &576457878
