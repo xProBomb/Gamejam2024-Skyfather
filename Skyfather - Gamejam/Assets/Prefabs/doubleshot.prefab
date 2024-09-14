@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: doubleshot
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: afa91a220fa3b964e91269b556d1f92b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: afa91a220fa3b964e91269b556d1f92b, type: 3}
       propertyPath: m_LocalScale.x
       value: 6
