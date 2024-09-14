@@ -20,6 +20,9 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private GameObject _wall;
 
+    [SerializeField]
+    private bool _isNotPlaceable;
+
     public void Init(bool isOffset)
     {
         _spriteRenderer.color = isOffset ? _offsetColor : _baseColor;
@@ -37,6 +40,7 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (_isNotPlaceable) return;
         Instantiate(_wall, transform.position, Quaternion.identity, transform);
     }
 }

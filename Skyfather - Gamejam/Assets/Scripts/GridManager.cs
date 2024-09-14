@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NavMeshPlus.Components;
 using TMPro.EditorUtilities;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -18,6 +19,12 @@ public class GridManager : MonoBehaviour
 
     [SerializeField]
     private Tile _tilePrefab;
+
+    [SerializeField]
+    private Tile _noPlaceTilePrefab;
+
+    [SerializeField]
+    private Tile _centerTilePrefab;
 
     [SerializeField]
     private Transform _cam;
@@ -48,12 +55,30 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < _height; y++)
             {
-                Tile tile = Instantiate(_tilePrefab, new Vector3(x - _width/2, y - _height/2, 0), Quaternion.identity);
-                tile.name = $"Tile {x}, {y}";
-                tile.transform.SetParent(transform);
+                if ( y == _height/2 && x == _width/2) // center tile
+                {
+                    Tile tileCenter = Instantiate(_centerTilePrefab, new Vector3(x - _width/2, y - _height/2, 0), Quaternion.identity);
+                    tileCenter.name = $"Tile {x}, {y}";
+                    tileCenter.transform.SetParent(transform);
+                    tileCenter.Init(false);
 
-                var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-                tile.Init(isOffset);
+                }
+                else if ( y == _height/2 || y == _height/2 + 1 || y == _height/2 - 1)
+                {
+                    Tile tileNoPlace = Instantiate(_noPlaceTilePrefab, new Vector3(x - _width/2, y - _height/2, 0), Quaternion.identity);
+                    tileNoPlace.name = $"Tile {x}, {y}";
+                    tileNoPlace.transform.SetParent(transform);
+                    var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+                    tileNoPlace.Init(isOffset);
+                }
+                else
+                {
+                    Tile tile = Instantiate(_tilePrefab, new Vector3(x - _width/2, y - _height/2, 0), Quaternion.identity);
+                    tile.name = $"Tile {x}, {y}";
+                    tile.transform.SetParent(transform);
+                    var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+                    tile.Init(isOffset);
+                }
             }
         }
     }
