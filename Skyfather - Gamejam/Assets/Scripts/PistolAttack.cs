@@ -8,7 +8,7 @@ public class PistolAttack : GunAttack
     {
         if(numShots>1)
         {
-            StartCoroutine(BurstFire(bulletPrefab, firePoint, currentPos, speed, numShots));
+            MultiShot(bulletPrefab, firePoint, currentPos, speed, numShots);
         }
         else 
         {
@@ -18,19 +18,39 @@ public class PistolAttack : GunAttack
         }
     }
 
-    private IEnumerator BurstFire(GameObject bulletPrefab, GameObject firePoint, Transform currentPos, float speed, float numShots)
+    private void MultiShot(GameObject bulletPrefab, GameObject firePoint, Transform currentPos, float speed, float numShots)
     {
-        float burstDelay = 0.1f;
+        float angleStep = 10f; // Adjust this value to change the spread of the bullets
+        float angle = -((numShots - 1) * angleStep) / 2; // Start angle for the first bullet
 
         for (int i = 0; i < numShots; i++)
         {
-            // Instantiate and shoot the bullet
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, currentPos.rotation);
+            // Calculate the rotation for each bullet
+            Quaternion bulletRotation = Quaternion.Euler(0, 0, angle);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, currentPos.rotation * bulletRotation);
             Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
-            bulletRigidbody.velocity = currentPos.up * speed;
+            bulletRigidbody.velocity = bullet.transform.up * speed;
 
-            // Wait for the next shot in the burst
-            yield return new WaitForSeconds(burstDelay);
+            // Increment the angle for the next bullet
+            angle += angleStep;
         }
     }
+
+    // this is the old double shot code to shoot bullet bursts
+
+    // private IEnumerator BurstFire(GameObject bulletPrefab, GameObject firePoint, Transform currentPos, float speed, float numShots)
+    // {
+    //     float burstDelay = 0.1f;
+
+    //     for (int i = 0; i < numShots; i++)
+    //     {
+    //         // Instantiate and shoot the bullet
+    //         GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, currentPos.rotation);
+    //         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
+    //         bulletRigidbody.velocity = currentPos.up * speed;
+
+    //         // Wait for the next shot in the burst
+    //         yield return new WaitForSeconds(burstDelay);
+    //     }
+    // }
 }

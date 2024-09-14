@@ -19,7 +19,7 @@ public class DoubleShot : CardsModifiers
     public override void PickUp()
     {
         Debug.Log(playerShoot.numShots);
-        playerShoot.numShots += 2;
+        playerShoot.numShots += 1;
         Debug.Log(playerShoot.numShots);
     }
 
