@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5796114668924930402}
   - component: {fileID: 6513566080987826327}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Enemey NoPlayer NoTurret
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532d5830de7f4e1419a6533ad9da34c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _willChasePlayer: 1
-  _willTargetTurrets: 1
+  _willChasePlayer: 0
+  _willTargetTurrets: 0
   _rangeToTargetPlayer: 10
   _rangeToTargetTurret: 10
 --- !u!195 &5796114668924930402
@@ -183,7 +183,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.43326378, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

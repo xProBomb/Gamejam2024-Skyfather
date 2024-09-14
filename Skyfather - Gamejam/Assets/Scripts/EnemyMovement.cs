@@ -6,6 +6,19 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
 
+    [SerializeField]
+    private bool _willChasePlayer;
+
+    [SerializeField]
+    private bool _willTargetTurrets;
+
+
+    [SerializeField]
+    private float _rangeToTargetPlayer = 10f;
+
+    [SerializeField]
+    private float _rangeToTargetTurret = 10f;
+
     private Vector3 target;
     NavMeshAgent agent;
 
@@ -19,18 +32,58 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        target = GameObject.Find("Player").transform.position;
-        if (agent.pathStatus != NavMeshPathStatus.PathPartial)
+
+        // check if player is in range
+        if (_willChasePlayer)
         {
-            agent.SetDestination(target);
+            GameObject player = GameObject.Find("Player");
+            if (player != null)
+            {
+                float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+                if (distanceToPlayer <= _rangeToTargetPlayer)
+                {
+                    target = player.transform.position;
+                    agent.SetDestination(target);
+                }
+            }
         }
-        else if (agent.pathStatus == NavMeshPathStatus.PathPartial && agent.remainingDistance > 0.5f)
+        // check if turret is in range
+        else if (_willTargetTurrets)
+        {
+            GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
+            GameObject closestTurret = null;
+            float closestDistance = Mathf.Infinity;
+
+            foreach (GameObject turret in turrets)
+            {
+                float distanceToTurret = Vector3.Distance(transform.position, turret.transform.position);
+                if (distanceToTurret <= _rangeToTargetTurret && distanceToTurret < closestDistance)
+                {
+                    closestDistance = distanceToTurret;
+                    closestTurret = turret;
+                }
+            }
+
+            if (closestTurret != null)
+            {
+                target = closestTurret.transform.position;
+                agent.SetDestination(target);
+            }
+        }
+        // if it hasnt set a target then set target to the gameobject with the tag "Base"
+        if (target == Vector3.zero)
+        {
+            GameObject baseObject = GameObject.FindGameObjectWithTag("Base");
+            if (baseObject != null)
+            {
+                target = baseObject.transform.position;
+                agent.SetDestination(target);
+            }
+        }
+        // if the agents target is obstructed, find a new path
+        if (agent.pathStatus == NavMeshPathStatus.PathPartial && agent.remainingDistance > 0.5f)
         {
             agent.SetDestination(GetClosestReachablePoint(agent));
-        }
-        else
-        {
-            agent.SetDestination(target);
         }
         FaceTarget();
     }
