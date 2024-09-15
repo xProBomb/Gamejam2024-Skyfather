@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using NavMeshPlus.Components;
-using TMPro.EditorUtilities;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
