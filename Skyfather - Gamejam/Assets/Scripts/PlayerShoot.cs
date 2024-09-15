@@ -11,10 +11,13 @@ public class PlayerShoot : MonoBehaviour
 
     [SerializeField]
     private GameObject _bulletPrefab;
+    public GameObject fireBulletPrefab;
+    public float numFireCard = 0;
 
     [SerializeField]
     private float _bulletSpeed = 1.0f;
     public float numShots = 1;
+    public float damageIncrease;
 
     void Awake()
     {
@@ -26,7 +29,13 @@ public class PlayerShoot : MonoBehaviour
         {
             if(weaponSelection.curSlot == 1)
             {
-                weaponSelection.weapon1.transform.GetChild(0).GetComponent<GunAttack>().Fire(_bulletPrefab, _firePoint, this.transform, _bulletSpeed, numShots);
+                if(numFireCard > 0)
+                {
+                    weaponSelection.weapon1.transform.GetChild(0).GetComponent<GunAttack>().Fire(fireBulletPrefab, _firePoint, this.transform, _bulletSpeed, numShots, damageIncrease);
+                } else 
+                {
+                    weaponSelection.weapon1.transform.GetChild(0).GetComponent<GunAttack>().Fire(_bulletPrefab, _firePoint, this.transform, _bulletSpeed, numShots, damageIncrease);
+                }
             } if(weaponSelection.curSlot == 2)
             {
 

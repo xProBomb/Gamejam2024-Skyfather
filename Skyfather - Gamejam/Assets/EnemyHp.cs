@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHp : MonoBehaviour
 {
-    public int health;
+    public float health;
 
     private void Awake()
     {
@@ -14,7 +14,7 @@ public class EnemyHp : MonoBehaviour
         if (health <= 0) health = 1; // Ensure health is at least 1
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)

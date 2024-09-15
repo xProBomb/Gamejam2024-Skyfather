@@ -31,6 +31,7 @@ public class CardMod : MonoBehaviour
             {
                 int index = Mathf.FloorToInt(curCard);
                 cards[index].transform.GetChild(0).position += new Vector3(0,-1,5);
+                Debug.Log("scroll worked");
                 if (curCard >= cards.Count-1)
                 {
                     Debug.Log("got this far");
@@ -59,6 +60,7 @@ public class CardMod : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("e happened");
                 cards[Mathf.FloorToInt(curCard)].transform.GetChild(0).GetComponent<CardsModifiers>().Drop();
                 RemoveCard(Mathf.FloorToInt(curCard));
             }
@@ -74,8 +76,8 @@ public class CardMod : MonoBehaviour
         spawnedCard.transform.localScale = new Vector3(6f, 6f, 0f);
         if(cards.Count == 1)
         {
-            Debug.Log("This is what we want");
-            spawnedCard.transform.localPosition = new Vector3(0f, 1f, -5f);
+            spawnedCard.transform.localPosition = new Vector3(0f, 0f, 0f);
+            spawnedCard.transform.position += new Vector3(0f, 1f, -5f);
         }
         else
         {
@@ -86,18 +88,33 @@ public class CardMod : MonoBehaviour
 
     public void RemoveCard(int indexToRemove)
     {
-        // Remove the card from the list
         GameObject cardToRemove = cards[indexToRemove].transform.GetChild(0).gameObject;
-        Destroy(cardToRemove);
 
-        // Shift the remaining cards down
+        if(indexToRemove+1 == cards.Count && cards.Count != 1)
+        {
+            GameObject tempCard = cards[indexToRemove-1].transform.GetChild(0).gameObject;
+            tempCard.transform.position += new Vector3(0f, 1f, -5f);
+        }
+        Destroy(cardToRemove);
+        Debug.Log("this also worked");
         for (int i = indexToRemove + 1; i < cards.Count; i++)
         {
+            Debug.Log("this is breaking it");
             GameObject card = cards[i].transform.GetChild(0).gameObject;
-            card.transform.SetParent(cardMod.transform.GetChild(i - 1), false); // Move card to the previous slot
+            card.transform.SetParent(cardMod.transform.GetChild(i - 1), false);
+            card.transform.localPosition = new Vector3(0f, 0f, 0f);
+            if(i == indexToRemove+1)
+            {
+                card.transform.position += new Vector3(0f, 1f, -5f);
+            }
         }
 
-        // Remove the last card slot as it is now empty
+        if(indexToRemove+1 == cards.Count && cards.Count != 1)
+        {
+            Debug.Log("curCard reduced");
+            curCard -= 1;
+        }
         cards.RemoveAt(cards.Count - 1);
+        Debug.Log("ending hit");
     }
 }

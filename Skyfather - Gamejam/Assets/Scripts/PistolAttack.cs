@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class PistolAttack : GunAttack
 {
-    public override void Fire(GameObject bulletPrefab, GameObject firePoint, Transform currentPos, float speed, float numShots)
+    public override void Fire(GameObject bulletPrefab, GameObject firePoint, Transform currentPos, float speed, float numShots, float increase)
     {
         if(numShots>1)
         {
-            MultiShot(bulletPrefab, firePoint, currentPos, speed, numShots);
+            MultiShot(bulletPrefab, firePoint, currentPos, speed, numShots, increase);
         }
         else 
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, currentPos.rotation);
+            bullet.GetComponent<Projectile>().damage += increase;
             Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
             bulletRigidbody.velocity = currentPos.up * speed;
         }
     }
 
-    private void MultiShot(GameObject bulletPrefab, GameObject firePoint, Transform currentPos, float speed, float numShots)
+    private void MultiShot(GameObject bulletPrefab, GameObject firePoint, Transform currentPos, float speed, float numShots, float increase)
     {
         float angleStep = 10f; // Adjust this value to change the spread of the bullets
         float angle = -((numShots - 1) * angleStep) / 2; // Start angle for the first bullet
@@ -28,6 +29,7 @@ public class PistolAttack : GunAttack
             // Calculate the rotation for each bullet
             Quaternion bulletRotation = Quaternion.Euler(0, 0, angle);
             GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, currentPos.rotation * bulletRotation);
+            bullet.GetComponent<Projectile>().damage += increase;
             Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
             bulletRigidbody.velocity = bullet.transform.up * speed;
 
