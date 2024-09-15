@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesAlive: 0
-  enemiesThisWave: 5
+  enemiesThisWave: 5999
   enemySpanwers:
   - {fileID: 2029106738}
   - {fileID: 901565675}
