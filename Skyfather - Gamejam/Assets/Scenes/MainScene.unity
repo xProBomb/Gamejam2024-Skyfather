@@ -856,6 +856,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1416744795267327098, guid: 14f35b848755f6844a06c5b6794478de, type: 3}
+      propertyPath: _bulletPrefab
+      value: 
+      objectReference: {fileID: 5495100237642963657, guid: 060da68a46ce22847b3f9ca2a5b5761e, type: 3}
+    - target: {fileID: 1416744795267327098, guid: 14f35b848755f6844a06c5b6794478de, type: 3}
+      propertyPath: fireBulletPrefab
+      value: 
+      objectReference: {fileID: 5085224235745513904, guid: 4a58b2f10c3c26549b142b57e1c93dbf, type: 3}
+    - target: {fileID: 1894145701502094132, guid: 14f35b848755f6844a06c5b6794478de, type: 3}
+      propertyPath: allCards.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894145701502094132, guid: 14f35b848755f6844a06c5b6794478de, type: 3}
+      propertyPath: allCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 2800621294551463769, guid: 338ef7f11899ce94d807e3a6a10314ff, type: 3}
     - target: {fileID: 4232847488326146149, guid: 14f35b848755f6844a06c5b6794478de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
