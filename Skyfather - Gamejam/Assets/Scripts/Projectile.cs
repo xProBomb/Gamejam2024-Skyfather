@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public int damage = 1;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
+            EnemyHp enemyHp = collision.GetComponent<EnemyHp>();
+            enemyHp.TakeDamage(damage);
             Destroy(gameObject);
         }
     }
